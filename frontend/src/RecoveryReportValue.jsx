@@ -90,6 +90,9 @@ function Prose({ text }) {
 }
 
 export function AIResultValue({ value, depth = 0 }) {
+  if (value === null || value === undefined || value === '') return <p>Not provided</p>;
+  if (value === false) return <p>No</p>;
+  if (value === 0) return <p>0</p>;
   if (depth > 10) return <p>{reportText(value)}</p>;
   if (Array.isArray(value)) {
     if (!value.length) return <p className="ai-muted">None reported.</p>;
